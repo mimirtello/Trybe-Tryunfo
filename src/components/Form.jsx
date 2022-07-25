@@ -19,6 +19,7 @@ class Form extends React.Component {
             id="name"
             value={ cardName }
             onChange={ onInputChange }
+            name="cardName"
           />
         </label>
 
@@ -30,6 +31,7 @@ class Form extends React.Component {
             value={ cardDescription }
             onChange={ onInputChange }
             id="descricao"
+            name="cardDescription"
           />
         </label>
 
@@ -41,6 +43,7 @@ class Form extends React.Component {
             id="number1"
             value={ cardAttr1 }
             onChange={ onInputChange }
+            name="cardAttr1"
           />
         </label>
         <label htmlFor="number2">
@@ -51,6 +54,7 @@ class Form extends React.Component {
             id="number2"
             value={ cardAttr2 }
             onChange={ onInputChange }
+            name="cardAttr2"
           />
         </label>
         <label htmlFor="number3">
@@ -61,6 +65,7 @@ class Form extends React.Component {
             id="number3"
             value={ cardAttr3 }
             onChange={ onInputChange }
+            name="cardAttr3"
           />
         </label>
         <label htmlFor="imagem">
@@ -71,6 +76,7 @@ class Form extends React.Component {
             id="imagem"
             value={ cardImage }
             onChange={ onInputChange }
+            name="cardImage "
           />
         </label>
         <label htmlFor="select">
@@ -80,6 +86,7 @@ class Form extends React.Component {
             id="select"
             value={ cardRare }
             onChange={ onInputChange }
+            name="cardRare"
           >
             <option value="normal">normal</option>
             <option value="raro" selected>raro</option>
@@ -94,6 +101,7 @@ class Form extends React.Component {
             id="check"
             checked={ cardTrunfo }
             onChange={ onInputChange }
+            name="cardTrunfo"
           />
         </label>
         <button
