@@ -15,7 +15,7 @@ class App extends React.Component {
     cardTrunfo: '',
   }
 
-  onInputChange=({ target }) =>{
+  onInputChange=({ target }) => {
     this.setState({ [target.name]: target.value });
   }
 
@@ -46,7 +46,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          onInputChange={this.onInputChange}
+          onInputChange={ this.onInputChange }
         />
       </div>
     );
