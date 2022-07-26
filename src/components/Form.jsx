@@ -76,7 +76,7 @@ class Form extends React.Component {
             id="imagem"
             value={ cardImage }
             onChange={ onInputChange }
-            name="cardImage "
+            name="cardImage"
           />
         </label>
         <label htmlFor="select">

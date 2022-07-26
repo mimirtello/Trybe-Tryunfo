@@ -12,17 +12,44 @@ class App extends React.Component {
     cardAttr3: '',
     cardImage: '',
     cardRare: '',
-    cardTrunfo: '',
+    cardTrunfo: false,
+    isSaveButtonDisabled: true,
+  }
+
+  validation= () =>{
+    const { cardName, cardDescription, cardAttr1,
+      cardAttr2, cardAttr3, cardImage,
+      cardRare } = this.state;
+    const campoVazio = !!cardName && !!cardDescription && !!cardImage && !!cardRare;
+    const maiorQue = parseInt(cardAttr1, 10)
+          + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= 210
+    const menorQueZeroa1 = !(parseInt(cardAttr1, 10)
+     > 90 || parseInt(cardAttr1, 10) < 0);
+    const menorQueZeroa2 = !(parseInt(cardAttr2, 10)
+     > 90 || parseInt(cardAttr2, 10) < 0);
+    const menorQueZeroa3 = !(parseInt(cardAttr3, 10)
+     > 90 || parseInt(cardAttr3, 10) < 0);
+
+    if (campoVazio && maiorQue
+      && menorQueZeroa1
+      && menorQueZeroa2
+      && menorQueZeroa3) {
+      this.setState({ isSaveButtonDisabled: false });
+    } else {
+      this.setState({ isSaveButtonDisabled: true });
+    }
   }
 
   onInputChange=({ target }) => {
-    this.setState({ [target.name]: target.value });
+    this.setState({ [target.name]: target.value }, () => {
+      this.validation();
+    });
   }
 
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo } = this.state;
+      cardRare, cardTrunfo, isSaveButtonDisabled } = this.state;
 
     return (
       <div>
@@ -47,6 +74,8 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
       </div>
     );
