@@ -14,6 +14,36 @@ class App extends React.Component {
     cardRare: '',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    arrayDeCartas: [],
+  }
+
+  onSaveButtonClick =(event) => {
+    event.preventDefault();
+    const { cardName, cardDescription,
+      cardAttr1, cardAttr2, cardAttr3, cardImage,
+      cardRare, cardTrunfo } = this.state;
+
+    const card = {
+      nome: cardName,
+      descricao: cardDescription,
+      atributo01: cardAttr1,
+      atributo02: cardAttr2,
+      atributo03: cardAttr3,
+      imagem: cardImage,
+      raro: cardRare,
+      trunfo: cardTrunfo,
+    };
+
+    this.setState((prevState) => ({
+      arrayDeCartas: [...prevState.arrayDeCartas, card],
+      cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardRare: 'normal',
+    }));
   }
 
   validation= () => {
