@@ -16,19 +16,21 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
   }
 
-  validation= () =>{
+  validation= () => {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
       cardRare } = this.state;
+    const duzentosEDez = 210;
+    const noventa = 90;
     const campoVazio = !!cardName && !!cardDescription && !!cardImage && !!cardRare;
     const maiorQue = parseInt(cardAttr1, 10)
-          + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= 210
+          + parseInt(cardAttr2, 10) + parseInt(cardAttr3, 10) <= duzentosEDez;
     const menorQueZeroa1 = !(parseInt(cardAttr1, 10)
-     > 90 || parseInt(cardAttr1, 10) < 0);
+     > noventa || parseInt(cardAttr1, 10) < 0);
     const menorQueZeroa2 = !(parseInt(cardAttr2, 10)
-     > 90 || parseInt(cardAttr2, 10) < 0);
+     > noventa || parseInt(cardAttr2, 10) < 0);
     const menorQueZeroa3 = !(parseInt(cardAttr3, 10)
-     > 90 || parseInt(cardAttr3, 10) < 0);
+     > noventa || parseInt(cardAttr3, 10) < 0);
 
     if (campoVazio && maiorQue
       && menorQueZeroa1
