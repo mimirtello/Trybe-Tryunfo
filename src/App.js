@@ -45,7 +45,6 @@ class App extends React.Component {
       cardAttr3: 0,
       cardRare: 'normal',
     }));
-    console.log(cardTrunfo);
     if (cardTrunfo === true) {
       this.setState({ hasTrunfo: true });
     }
@@ -77,13 +76,33 @@ class App extends React.Component {
     }
   }
 
+  procuraCarta= () => {
+    const { arrayDeCartas } = this.state;
+    const cartas = arrayDeCartas.some((carta) => carta.cardTrunfo === true);
+    this.setState({ hasTrunfo: cartas });
+  }
+
+  removeCard=(index) => {
+    const { arrayDeCartas } = this.state;
+    this.setState({ arrayDeCartas: arrayDeCartas
+      .filter((card, i) => i !== index),
+    }, () => {
+      this.procuraCarta();
+      // procurar se existe uma carta com supertrunfo no estado
+      // se existir muda hastrunfo para true
+      // se nao existir é false
+    });
+  }
+
   onInputChange=({ target }) => {
     const value = (target.type === 'checkbox') ? target.checked : target.value;
+
     this.setState({ [target.name]: value }, () => {
       this.validation();
     });
   }
 
+  // URL.createObjectURL(target.value);
   render() {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
@@ -101,6 +120,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasRemoveButton={ false }
         />
         <Form
           cardName={ cardName }
@@ -108,7 +128,7 @@ class App extends React.Component {
           cardAttr1={ cardAttr1 }
           cardAttr2={ cardAttr2 }
           cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
+          cardImage={ this.showImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.onInputChange }
@@ -127,7 +147,10 @@ class App extends React.Component {
           cardImage={ carta.imagem }
           cardRare={ carta.raro }
           cardTrunfo={ carta.trunfo }
-        />))}
+          onClickRemoveCard={ () => { this.removeCard(index); } }
+          hasRemoveButton
+        />
+        ))}
       </div>
 
     );
